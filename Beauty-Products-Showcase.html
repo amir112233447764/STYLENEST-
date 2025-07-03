@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Products</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#ff7bac',secondary:'#f5b6cd'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Montserrat', sans-serif;
+background-color: #fdfbfc;
+}
+.product-card {
+transition: transform 0.3s ease;
+}
+.product-card:hover {
+transform: translateY(-5px);
+}
+.category-scroll::-webkit-scrollbar {
+display: none;
+}
+.wishlist-heart {
+transition: color 0.3s ease, transform 0.3s ease;
+}
+.wishlist-heart.active {
+color: #ff7bac;
+transform: scale(1.2);
+}
+.rating-stars {
+color: #ffca28;
+}
+</style>
+</head>
+<body class="pb-16">
+<!-- Header -->
+<header class="fixed top-0 w-full bg-white shadow-sm z-50">
+<div class="flex items-center justify-between px-4 py-3">
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+<div class="text-2xl font-['Pacifico'] text-primary tracking-wider">Bella</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-2 cursor-pointer">
+<i class="ri-search-line ri-lg"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer relative">
+<i class="ri-shopping-bag-line ri-lg"></i>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-14">
+<!-- Hero Banner -->
+<section class="relative mb-6">
+<img src="https://readdy.ai/api/search-image?query=luxury%20beauty%20products%20arrangement%20with%20pink%20roses%2C%20soft%20lighting%2C%20high-end%20cosmetics%20displayed%20elegantly%20on%20marble%20surface%2C%20pastel%20pink%20background%2C%20professional%20product%20photography%2C%20soft%20shadows%2C%20beauty%20brand%20advertisement%20style&width=375&height=200&seq=hero1&orientation=landscape" alt="Summer Beauty Collection" class="w-full h-48 object-cover">
+<div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent flex flex-col justify-center px-6">
+<h2 class="text-white text-2xl font-semibold mb-1">Summer Beauty</h2>
+<p class="text-white text-sm mb-3">Up to 40% off selected items</p>
+<button class="bg-primary text-white px-4 py-2 rounded-button w-32 cursor-pointer">Shop Now</button>
+</div>
+</section>
+<!-- Category Navigation -->
+<section class="px-4 mb-6">
+<div class="category-scroll flex overflow-x-auto pb-2 gap-3">
+<div class="flex flex-col items-center min-w-16 cursor-pointer">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center mb-1">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20skincare%20cream%20jar%20and%20serum%20bottle%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20white%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look&width=64&height=64&seq=cat1&orientation=squarish" alt="Skincare" class="w-full h-full object-cover">
+</div>
+<span class="text-xs font-medium whitespace-nowrap overflow-hidden text-overflow-ellipsis">Skincare</span>
+</div>
+<div class="flex flex-col items-center min-w-16 cursor-pointer">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center mb-1">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20makeup%20items%20including%20lipstick%20and%20mascara%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20white%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look&width=64&height=64&seq=cat2&orientation=squarish" alt="Makeup" class="w-full h-full object-cover">
+</div>
+<span class="text-xs font-medium whitespace-nowrap overflow-hidden text-overflow-ellipsis">Makeup</span>
+</div>
+<div class="flex flex-col items-center min-w-16 cursor-pointer">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center mb-1">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20hair%20care%20products%20shampoo%20and%20conditioner%20bottles%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20white%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look&width=64&height=64&seq=cat3&orientation=squarish" alt="Hair Care" class="w-full h-full object-cover">
+</div>
+<span class="text-xs font-medium whitespace-nowrap overflow-hidden text-overflow-ellipsis">Hair Care</span>
+</div>
+<div class="flex flex-col items-center min-w-16 cursor-pointer">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center mb-1">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20perfume%20bottle%20with%20floral%20elements%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20white%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look&width=64&height=64&seq=cat4&orientation=squarish" alt="Fragrance" class="w-full h-full object-cover">
+</div>
+<span class="text-xs font-medium whitespace-nowrap overflow-hidden text-overflow-ellipsis">Fragrance</span>
+</div>
+<div class="flex flex-col items-center min-w-16 cursor-pointer">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center mb-1">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20body%20lotion%20and%20scrub%20products%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20white%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look&width=64&height=64&seq=cat5&orientation=squarish" alt="Body Care" class="w-full h-full object-cover">
+</div>
+<span class="text-xs font-medium whitespace-nowrap overflow-hidden text-overflow-ellipsis">Body Care</span>
+</div>
+<div class="flex flex-col items-center min-w-16 cursor-pointer">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-secondary/20 flex items-center justify-center mb-1">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20gift%20box%20with%20beauty%20products%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20white%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look&width=64&height=64&seq=cat6&orientation=squarish" alt="New Arrivals" class="w-full h-full object-cover">
+</div>
+<span class="text-xs font-medium whitespace-nowrap overflow-hidden text-overflow-ellipsis">New Arrivals</span>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="px-4 mb-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Featured Products</h2>
+<a href="#" class="text-primary text-sm font-medium cursor-pointer">See All</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product 1 -->
+<div class="product-card bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20face%20serum%20bottle%20with%20dropper%2C%20elegant%20glass%20packaging%2C%20pink%20liquid%20inside%2C%20minimal%20design%2C%20professional%20product%20photography%20on%20white%20background%2C%20soft%20shadows%2C%20high-end%20cosmetic%20product%20isolated%2C%20beauty%20product%20photography&width=180&height=180&seq=prod1&orientation=squarish" alt="Radiance Serum" class="w-full h-40 object-cover">
+<button class="wishlist-heart absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+<div class="absolute bottom-0 left-0 bg-primary text-white text-xs px-2 py-1">
+NEW
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 truncate">Radiance Serum</h3>
+<div class="flex items-center mb-1">
+<div class="rating-stars flex text-xs">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(128)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm">$42.99</span>
+<button class="w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-white"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20moisturizer%20cream%20jar%2C%20elegant%20packaging%2C%20white%20cream%20visible%2C%20professional%20product%20photography%20on%20white%20background%2C%20soft%20shadows%2C%20high-end%20cosmetic%20product%20isolated%2C%20beauty%20product%20photography&width=180&height=180&seq=prod2&orientation=squarish" alt="Hydra Boost Cream" class="w-full h-40 object-cover">
+<button class="wishlist-heart absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 truncate">Hydra Boost Cream</h3>
+<div class="flex items-center mb-1">
+<div class="rating-stars flex text-xs">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(246)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm">$38.50</span>
+<button class="w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-white"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-card bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20lipstick%20in%20elegant%20gold%20tube%2C%20rich%20red%20color%2C%20professional%20product%20photography%20on%20white%20background%2C%20soft%20shadows%2C%20high-end%20cosmetic%20product%20isolated%2C%20beauty%20product%20photography&width=180&height=180&seq=prod3&orientation=squarish" alt="Velvet Matte Lipstick" class="w-full h-40 object-cover">
+<button class="wishlist-heart absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+<div class="absolute bottom-0 left-0 bg-secondary text-white text-xs px-2 py-1">
+-15%
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 truncate">Velvet Matte Lipstick</h3>
+<div class="flex items-center mb-1">
+<div class="rating-stars flex text-xs">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-line"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(87)</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="font-semibold text-sm">$24.99</span>
+<span class="text-xs text-gray-500 line-through ml-1">$29.99</span>
+</div>
+<button class="w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-white"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20mascara%20in%20elegant%20black%20tube%2C%20professional%20product%20photography%20on%20white%20background%2C%20soft%20shadows%2C%20high-end%20cosmetic%20product%20isolated%2C%20beauty%20product%20photography&width=180&height=180&seq=prod4&orientation=squarish" alt="Volume Boost Mascara" class="w-full h-40 object-cover">
+<button class="wishlist-heart absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 truncate">Volume Boost Mascara</h3>
+<div class="flex items-center mb-1">
+<div class="rating-stars flex text-xs">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(156)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm">$22.99</span>
+<button class="w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-white"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Special Offers -->
+<section class="px-4 mb-6">
+<h2 class="text-lg font-semibold mb-4">Special Offers</h2>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden mb-4">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20beauty%20gift%20set%20with%20multiple%20products%20arranged%20elegantly%2C%20premium%20skincare%20collection%2C%20professional%20product%20photography%20on%20soft%20pink%20background%2C%20high-end%20cosmetic%20products%2C%20beauty%20product%20photography&width=375&height=150&seq=offer1&orientation=landscape" alt="Summer Beauty Bundle" class="w-full h-36 object-cover">
+<div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent flex flex-col justify-center px-4">
+<h3 class="text-white text-lg font-semibold mb-1">Summer Beauty Bundle</h3>
+<p class="text-white text-xs mb-2">Get 4 full-size products for $79.99</p>
+<div class="bg-white/90 rounded-full px-3 py-1 text-primary text-xs font-semibold w-fit">
+Save 35%
+</div>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium">Limited time offer</span>
+<span class="text-xs text-gray-500">Ends in 2 days</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+<div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+</div>
+<div class="flex justify-between">
+<span class="text-xs text-gray-500">75% claimed</span>
+<button class="bg-primary text-white px-4 py-1.5 rounded-button text-sm cursor-pointer">Shop Now</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20perfume%20bottle%20with%20floral%20elements%2C%20elegant%20glass%20packaging%2C%20pink%20liquid%20inside%2C%20professional%20product%20photography%20on%20soft%20pink%20background%2C%20soft%20shadows%2C%20high-end%20fragrance%20product%2C%20beauty%20product%20photography&width=375&height=150&seq=offer2&orientation=landscape" alt="Floral Bliss Perfume" class="w-full h-36 object-cover">
+<div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent flex flex-col justify-center px-4">
+<h3 class="text-white text-lg font-semibold mb-1">Floral Bliss Perfume</h3>
+<p class="text-white text-xs mb-2">New arrival - Limited edition</p>
+<div class="bg-white/90 rounded-full px-3 py-1 text-primary text-xs font-semibold w-fit">
+Free Gift
+</div>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium">Almost sold out</span>
+<span class="text-xs text-gray-500">Only 8 left</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+<div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+</div>
+<div class="flex justify-between">
+<span class="text-xs text-gray-500">90% claimed</span>
+<button class="bg-primary text-white px-4 py-1.5 rounded-button text-sm cursor-pointer">Shop Now</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Now -->
+<section class="px-4 mb-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Trending Now</h2>
+<a href="#" class="text-primary text-sm font-medium cursor-pointer">See All</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product 5 -->
+<div class="product-card bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20facial%20cleansing%20brush%2C%20pink%20silicone%2C%20elegant%20design%2C%20professional%20product%20photography%20on%20white%20background%2C%20soft%20shadows%2C%20high-end%20beauty%20tool%20isolated%2C%20beauty%20product%20photography&width=180&height=180&seq=prod5&orientation=squarish" alt="Facial Cleansing Brush" class="w-full h-40 object-cover">
+<button class="wishlist-heart absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+<div class="absolute bottom-0 left-0 bg-secondary text-white text-xs px-2 py-1">
+TRENDING
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 truncate">Facial Cleansing Brush</h3>
+<div class="flex items-center mb-1">
+<div class="rating-stars flex text-xs">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(312)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm">$49.99</span>
+<button class="w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-white"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="product-card bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20eyeshadow%20palette%20with%20mirror%2C%20multiple%20pink%20and%20neutral%20shades%2C%20elegant%20packaging%2C%20professional%20product%20photography%20on%20white%20background%2C%20soft%20shadows%2C%20high-end%20cosmetic%20product%20isolated%2C%20beauty%20product%20photography&width=180&height=180&seq=prod6&orientation=squarish" alt="Rose Gold Eyeshadow Palette" class="w-full h-40 object-cover">
+<button class="wishlist-heart absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 truncate">Rose Gold Eyeshadow Palette</h3>
+<div class="flex items-center mb-1">
+<div class="rating-stars flex text-xs">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(189)</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="font-semibold text-sm">$36.99</span>
+<span class="text-xs text-gray-500 line-through ml-1">$45.99</span>
+</div>
+<button class="w-8 h-8 bg-primary rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-add-line ri-lg text-white"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Brands -->
+<section class="px-4 mb-8">
+<h2 class="text-lg font-semibold mb-4">Featured Brands</h2>
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=minimalist%20beauty%20brand%20logo%2C%20elegant%20typography%2C%20pink%20and%20gold%20color%20scheme%2C%20clean%20design%2C%20professional%20logo%20on%20white%20background&width=80&height=80&seq=brand1&orientation=squarish" alt="Lumière" class="w-16 h-16 object-contain mb-2">
+<span class="text-xs font-medium">Lumière</span>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=minimalist%20beauty%20brand%20logo%2C%20elegant%20typography%2C%20pink%20and%20black%20color%20scheme%2C%20clean%20design%2C%20professional%20logo%20on%20white%20background&width=80&height=80&seq=brand2&orientation=squarish" alt="Glow & Co" class="w-16 h-16 object-contain mb-2">
+<span class="text-xs font-medium">Glow & Co</span>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-3 flex flex-col items-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=minimalist%20beauty%20brand%20logo%2C%20elegant%20typography%2C%20gold%20and%20white%20color%20scheme%2C%20clean%20design%2C%20professional%20logo%20on%20white%20background&width=80&height=80&seq=brand3&orientation=squarish" alt="Éclat" class="w-16 h-16 object-contain mb-2">
+<span class="text-xs font-medium">Éclat</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 z-50">
+<div class="grid grid-cols-5 h-16">
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-5-fill ri-lg"></i>
+</div>
+<span class="text-xs mt-1">Home</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer text-gray-500">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-apps-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">Categories</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer text-gray-500">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">Wishlist</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer text-gray-500">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-shopping-bag-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">Cart</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer text-gray-500">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<span class="text-xs mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Floating Add to Cart Button -->
+<div class="fixed bottom-20 right-4 z-40">
+<button class="w-12 h-12 bg-primary rounded-full shadow-lg flex items-center justify-center cursor-pointer">
+<i class="ri-shopping-bag-fill ri-xl text-white"></i>
+</button>
+</div>
+<script id="wishlistScript">
+document.addEventListener('DOMContentLoaded', function() {
+const wishlistButtons = document.querySelectorAll('.wishlist-heart');
+wishlistButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.stopPropagation();
+this.classList.toggle('active');
+if (this.classList.contains('active')) {
+this.innerHTML = '<i class="ri-heart-fill ri-lg"></i>';
+} else {
+this.innerHTML = '<i class="ri-heart-line ri-lg"></i>';
+}
+});
+});
+});
+</script>
+<script id="productCardScript">
+document.addEventListener('DOMContentLoaded', function() {
+const productCards = document.querySelectorAll('.product-card');
+productCards.forEach(card => {
+card.addEventListener('click', function() {
+// Product detail page navigation would go here
+console.log('Product clicked');
+});
+});
+});
+</script>
+<script id="categoryScrollScript">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryItems = document.querySelectorAll('.category-scroll > div');
+categoryItems.forEach(item => {
+item.addEventListener('click', function() {
+// Category navigation would go here
+console.log('Category clicked');
+});
+});
+});
+</script>
+</body>
+</html>
